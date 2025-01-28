@@ -45,6 +45,7 @@ export default function RootLayout() {
         (...) {/* Other screens */}
         {/* Contact Screen */}
         <Stack.Screen name="contact" options={{ title: "Contact Us" }} />
+        <Stack.Screen name="xcontact" options={{ title: "xContact Us" }} />
         {/* Tabs */}
         <Stack.Screen
           name="(tabs)"
