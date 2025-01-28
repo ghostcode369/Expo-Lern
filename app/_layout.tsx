@@ -16,8 +16,9 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme(); // Detect system theme (dark or light)
+
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"), // Custom font
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"), // Correct path to the font
   });
 
   useEffect(() => {
@@ -41,6 +42,9 @@ export default function RootLayout() {
             headerShown: false, // Hide the header
           }}
         />
+        (...) {/* Other screens */}
+        {/* Contact Screen */}
+        <Stack.Screen name="contact" options={{ title: "Contact Us" }} />
         {/* Tabs */}
         <Stack.Screen
           name="(tabs)"
@@ -50,7 +54,7 @@ export default function RootLayout() {
         />
         {/* Not Found Screen */}
         <Stack.Screen
-          name="+not-found"
+          name="coffee"
           options={{
             title: "Not Found",
             headerShown: true,

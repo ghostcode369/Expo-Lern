@@ -5,7 +5,7 @@ import { Link } from "expo-router";
 export default function CoffeeShop() {
   return (
     <ImageBackground
-      source={require("../assets/coffee-shop-bg.jpg")}
+      source={require("../../assets/coffee-shop-bg.jpg")} // Correct path to the image
       resizeMode="cover"
       style={styles.image}
     >
