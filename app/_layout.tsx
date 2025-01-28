@@ -8,7 +8,6 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
@@ -16,24 +15,25 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme(); // Detect system theme (dark or light)
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"), // Custom font
   });
 
   useEffect(() => {
     if (loaded) {
-      SplashScreen.hideAsync();
+      SplashScreen.hideAsync(); // Hide splash screen once fonts are loaded
     }
   }, [loaded]);
 
   if (!loaded) {
-    return null;
+    return null; // Show nothing until fonts are loaded
   }
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
+        {/* Home Screen */}
         <Stack.Screen
           name="index"
           options={{
@@ -41,10 +41,23 @@ export default function RootLayout() {
             headerShown: false, // Hide the header
           }}
         />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+        {/* Tabs */}
+        <Stack.Screen
+          name="(tabs)"
+          options={{
+            headerShown: false, // Hide the header for tabs
+          }}
+        />
+        {/* Not Found Screen */}
+        <Stack.Screen
+          name="+not-found"
+          options={{
+            title: "Not Found",
+            headerShown: true,
+          }}
+        />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
     </ThemeProvider>
   );
 }
